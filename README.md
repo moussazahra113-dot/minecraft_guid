@@ -1,0 +1,374 @@
+[index.html](https://github.com/user-attachments/files/30386579/index.html)
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل بلود سترايك الشامل للمبتدئين | Blood Strike Guide</title>
+    <style>
+        :root {
+            --bg-color: #0f1015;
+            --card-bg: #181a20;
+            --accent-red: #ff2a4b;
+            --accent-gold: #ffb703;
+            --text-color: #ffffff;
+            --text-secondary: #a0a5b5;
+            --border-color: #2a2d3d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 320px;
+            background-color: var(--card-bg);
+            border-left: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.3rem;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #222531;
+            border-right: 4px solid var(--accent-red);
+        }
+
+        .nav-item span {
+            font-size: 1.2rem;
+        }
+
+        /* منطقة المحتوى */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-body {
+            line-height: 1.8;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .step-box {
+            background: #1f222e;
+            border-right: 4px solid var(--accent-red);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #2a2415;
+            border-right: 4px solid var(--accent-gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #ffe0b2;
+        }
+
+        ul, ol {
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* أزرار التنقل */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent-red);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn:disabled {
+            background-color: #444;
+            cursor: not-allowed;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>🎯 دليل Blood Strike</h1>
+        </div>
+        <ul class="nav-list" id="navList">
+            <!-- سيتم توليد العناصر عبر JS -->
+        </ul>
+    </aside>
+
+    <!-- منطقة عرض الدرس -->
+    <main class="main-content">
+        <div class="content-card">
+            <h2 class="content-title" id="lessonTitle">اختر درساً للبدء</h2>
+            <div class="content-body" id="lessonBody">
+                <!-- سيتم تحميل المحتوى هنا -->
+            </div>
+            <div class="controls">
+                <button class="btn" id="prevBtn" onclick="changeLesson(-1)">السابق</button>
+                <button class="btn" id="nextBtn" onclick="changeLesson(1)">التالي</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // قاعدة بيانات دليل لعبة بلود سترايك للمبتدئين
+        const guideData = [
+            {
+                title: "1. أساسيات اللعبة وطور باتل رويال",
+                icon: "🪂",
+                content: `
+                    <p>أهلاً بك في دليل <b>Blood Strike</b>! هي لعبة تصويب وسريعة وتعتمد على طور الباتل رويال (Battle Royale) والقتال السريع.</p>
+                    
+                    <div class="step-box">
+                        <strong>فكرة اللعبة الأساسية:</strong>
+                        <ul>
+                            <li>تهبط مع 100 لاعب في خريطة واسعة.</li>
+                            <li>هدف السلسلة: لوث الأسلحة والمعدات، للبقاء كآخر شخص أو آخر فريق (Squad) على قيد الحياة.</li>
+                            <li><b>المنطقة الآمنة (Safe Zone / Gas):</b> تتقلص الخريطة باستمرار مع الوقت، ويجب أن تظل داخل الدائرة لتجنب الغاز القاتل.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 أهم ميزة في بلود سترايك:</strong>
+                        اللعبة تتميز بنظام حركة سريع جداً (Parkour & Sliding)، يمكنك التزحلق والجري والتسلق على الجدران بسرعة لإرباك الأعداء!
+                    </div>
+                `
+            },
+            {
+                title: "2. نظام الشركاء (Strikers)",
+                icon: "🦸‍♂️",
+                content: `
+                    <p>في Blood Strike لا تلعب بشخصية عادية، بل تختار "سترايكر" (Striker) يتميز بقدرات تكتيكية خاصة.</p>
+                    
+                    <div class="step-box">
+                        <strong>أبرز الشخصيات المناسبة للمبتدئين:</strong>
+                        <ul>
+                            <li><b>Ethan:</b> يطلق درعاً حماية أمامياً ينقذك في الاشتباكات المباشرة.</li>
+                            <li><b>Jet:</b> متخصص في السرعة والهجوم السريع والهجوم المباغت.</li>
+                            <li><b>Val:</b> تستطيع كشف أماكن الأعداء خلف الجدران (Radar / Scan).</li>
+                            <li><b>KAGI:</b> شخصية تسلل ومهارات إخفاء الصوت والحركة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>🎯 نصيحة:</strong> جرب القدرة الخاصة لشخصيتك (Ultimate Ability) بانتظام أثناء المعارك ولا تحتفظ بها طويلاً، فهي تعيد الشحن بسرعة!
+                    </div>
+                `
+            },
+            {
+                title: "3. الأسلحة وتخصيص العتاد (Loadout)",
+                icon: "🔫",
+                content: `
+                    <p>تفوقك في المواجهات يعتمد بشكل كبير على اختيار الأسلحة المناسبة لمسافة القتال.</p>
+
+                    <div class="step-box">
+                        <strong>أنواع الأسلحة الأساسية:</strong>
+                        <ul>
+                            <li><b>الرشاشات الهجومية (AR - Assault Rifles):</b> ممتازة للمسافات المتوسطة والبعيدة (مثل AK47, M4A1).</li>
+                            <li><b>الرشاشات الخفيفة (SMG):</b> الأفضل للمواجهات القريبة جداً وسرعة إطلاق النار (مثل MP5, Vector).</li>
+                            <li><b>القناصات (Sniper Rifles):</b> لإسقاط الأعداء بطلقة واحدة من مسافات بعيدة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>طلب الـ Loadout Drop:</strong>
+                        <p>خلال الجولة، يمكنك جمع المال لشراء أو طلب إسقاط "Loadout Drop" من المتاجر المنتشرة في الخريطة للحصول على أسلحتك المجهزة مسبقاً وتعديلاتك المفضلة!</p>
+                    </div>
+                `
+            },
+            {
+                title: "4. نظام الذهب والإنعاش (Respawn)",
+                icon: "💰",
+                content: `
+                    <p>تتميز Blood Strike بنظام اقتصاد وإنعاش مريح مقارنة بألعاب الباتل رويال الأخرى.</p>
+
+                    <div class="step-box">
+                        <strong>كيف تضمن العودة بعد الموت؟</strong>
+                        <ol>
+                            <li><b>إعادة الانتشار المباشر (Unlimited Respawn):</b> في المراحل الأولى من المباراة، إذا تم القضاء عليك وكان زميلك في الفريق حياً، ستعود للظهور تلقائياً بعد ثوانٍ!</li>
+                            <li><b>جمع المال (Cash):</b> اجمع الذهب/المال الملقى على الأرض أو من الصناديق.</li>
+                            <li><b>أجهزة الشراء (Shops):</b> يمكنك استخدام المال لشراء زملائك إذا ماتوا في الأطوار المتقدمة، أو شراء دروع وأسلحة مخصصة.</li>
+                        </ol>
+                    </div>
+                `
+            },
+            {
+                title: "5. مهارات الحركة (Movement & Aim)",
+                icon: "⚡",
+                content: `
+                    <p>لكي تصبح لاعباً محترفاً في بلود سترايك، يجب أن تتقن الحركة أثناء التصويب.</p>
+
+                    <div class="step-box">
+                        <strong>حركات أساسية للتفوق:</strong>
+                        <ul>
+                            <li><b>Slide Cancel:</b> اضغط زر التزحلق وأنت تجري ثم اضغط القفز فوراً للتنقل بسرعة وتفادي الرصاص.</li>
+                            <li><b>Jump Shot:</b> القفز أثناء المواجهة القريبة يجعل العدو يفقد التركيز على رأسك (Headshot).</li>
+                            <li><b>استخدام المظلة والمحطّات:</b> استخدم منصات الإطلاق (Zip-lines) في الخريطة للانتقال لأماكن مرتفعة والتفوق بالتضاريس.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>⚙️ إعدادات الحساسية (Sensitivity):</strong>
+                        ادخل للإعدادات وقم بضبط الحساسية لتناسب سرعة يدك، وفعّل خيار **Auto-Pickup** لتلتقط الذخيرة والدروع تلقائياً.
+                    </div>
+                `
+            },
+            {
+                title: "6. نصائح لتحقيق الفوز (Victory Tips)",
+                icon: "🏆",
+                content: `
+                    <p>خطة خطوة بخطوة للوصول للترتيب الأول في كل جولة:</p>
+
+                    <div class="step-box">
+                        <strong>استراتيجية الفوز:</strong>
+                        <ol>
+                            <li><b>الهبوط الآمن:</b> لا تهبط في وسط الخريطة المكتظ إذا كنت مبتدئاً، اختر أطراف الخريطة للتجمع والتسلح بروقان.</li>
+                            <li><b>تحديث الدروع:</b> حافظ دائماً على دروعك (Armor Plates) ممتلئة ولا تشتبك ودروعك مكسورة.</li>
+                            <li><b>التواصل مع الفريق:</b> استخدم نظام الإشارات (Ping) لتحديد أماكن الأعداء والأسلحة لزملائك.</li>
+                            <li><b>استغلال الغاز:</b> تحرك مع حافة الدائرة حتى لا يباغتك أحد من الخلف.</li>
+                        </ol>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>🔥 التكرار والممارسة:</strong> جرب طور "Hot Zone" أو القتال الجماعي السريع في اللعبة لتعتاد على التصويب والمواجهات المباشرة بسرعة.
+                    </div>
+                `
+            }
+        ];
+
+        let currentLessonIndex = 0;
+
+        function initApp() {
+            renderSidebar();
+            loadLesson(currentLessonIndex);
+        }
+
+        function renderSidebar() {
+            const navList = document.getElementById('navList');
+            navList.innerHTML = '';
+
+            guideData.forEach((lesson, index) => {
+                const li = document.createElement('li');
+                li.className = `nav-item ${index === currentLessonIndex ? 'active' : ''}`;
+                li.onclick = () => loadLesson(index);
+                li.innerHTML = `<span>${lesson.icon}</span> <div>${lesson.title}</div>`;
+                navList.appendChild(li);
+            });
+        }
+
+        function loadLesson(index) {
+            currentLessonIndex = index;
+            const lesson = guideData[index];
+
+            document.getElementById('lessonTitle').innerHTML = `${lesson.icon} ${lesson.title}`;
+            document.getElementById('lessonBody').innerHTML = lesson.content;
+
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === guideData.length - 1;
+
+            renderSidebar();
+        }
+
+        function changeLesson(direction) {
+            const newIndex = currentLessonIndex + direction;
+            if (newIndex >= 0 && newIndex < guideData.length) {
+                loadLesson(newIndex);
+            }
+        }
+
+        initApp();
+    </script>
+</body>
+</html>
