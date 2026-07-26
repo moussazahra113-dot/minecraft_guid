@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل ماينكرافت الشامل للمبتدئين</title>
+    <title>دليل بلود سترايك الشامل للمبتدئين | Blood Strike Guide</title>
     <style>
         :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --accent-green: #55ff55;
-            --accent-gold: #ffaa00;
+            --bg-color: #0f1015;
+            --card-bg: #181a20;
+            --accent-red: #ff2a4b;
+            --accent-gold: #ffb703;
             --text-color: #ffffff;
-            --text-secondary: #b0b0b0;
-            --border-color: #333333;
+            --text-secondary: #a0a5b5;
+            --border-color: #2a2d3d;
         }
 
         * {
@@ -47,7 +47,9 @@
 
         .sidebar-header h1 {
             font-size: 1.3rem;
-            color: var(--accent-green);
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .nav-list {
@@ -63,12 +65,12 @@
             transition: background 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .nav-item:hover, .nav-item.active {
-            background-color: #2a2a2a;
-            border-right: 4px solid var(--accent-green);
+            background-color: #222531;
+            border-right: 4px solid var(--accent-red);
         }
 
         .nav-item span {
@@ -108,8 +110,8 @@
         }
 
         .step-box {
-            background: #252525;
-            border-right: 4px solid var(--accent-green);
+            background: #1f222e;
+            border-right: 4px solid var(--accent-red);
             padding: 15px;
             margin: 15px 0;
             border-radius: 4px;
@@ -124,7 +126,7 @@
             color: #ffe0b2;
         }
 
-        ul {
+        ul, ol {
             margin-right: 20px;
             margin-top: 10px;
         }
@@ -142,8 +144,8 @@
         }
 
         .btn {
-            background-color: var(--accent-green);
-            color: #000;
+            background-color: var(--accent-red);
+            color: #fff;
             border: none;
             padding: 10px 20px;
             font-weight: bold;
@@ -153,11 +155,11 @@
         }
 
         .btn:hover {
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .btn:disabled {
-            background-color: #555;
+            background-color: #444;
             cursor: not-allowed;
             color: #888;
         }
@@ -178,7 +180,7 @@
     <!-- القائمة الجانبية -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h1>⛏️ دليل ماينكرافت للمبتدئين</h1>
+            <h1>🎯 دليل Blood Strike</h1>
         </div>
         <ul class="nav-list" id="navList">
             <!-- سيتم توليد العناصر عبر JS -->
@@ -200,155 +202,126 @@
     </main>
 
     <script>
-        // قاعدة بيانات الدروس والأساسيات من البداية للنهاية
+        // قاعدة بيانات دليل لعبة بلود سترايك للمبتدئين
         const guideData = [
             {
-                title: "1. التحكم واليوم الأول",
-                icon: "🌲",
+                title: "1. أساسيات اللعبة وطور باتل رويال",
+                icon: "🪂",
                 content: `
-                    <p>أهلاً بك في ماينكرافت! هدفك الأول هو البقاء على قيد الحياة قبل أن يحل الليل.</p>
+                    <p>أهلاً بك في دليل <b>Blood Strike</b>! هي لعبة تصويب وسريعة وتعتمد على طور الباتل رويال (Battle Royale) والقتال السريع.</p>
                     
                     <div class="step-box">
-                        <strong>أزرار التحكم الأساسية (PC):</strong>
+                        <strong>فكرة اللعبة الأساسية:</strong>
                         <ul>
-                            <li><b>WASD:</b> الحركة (للأمام، الخلف، اليسار، اليمين).</li>
-                            <li><b>المسطرة (Space):</b> القفز.</li>
-                            <li><b>الماوس (الزر الأيسر):</b> الضرب وتكسير الكتل.</li>
-                            <li><b>الماوس (الزر الأيمن):</b> استخدام الأشياء وتجميع/وضع الكتل.</li>
-                            <li><b>E:</b> فتح الحقيبة (Inventory).</li>
+                            <li>تهبط مع 100 لاعب في خريطة واسعة.</li>
+                            <li>هدف السلسلة: لوث الأسلحة والمعدات، للبقاء كآخر شخص أو آخر فريق (Squad) على قيد الحياة.</li>
+                            <li><b>المنطقة الآمنة (Safe Zone / Gas):</b> تتقلص الخريطة باستمرار مع الوقت، ويجب أن تظل داخل الدائرة لتجنب الغاز القاتل.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 أهم ميزة في بلود سترايك:</strong>
+                        اللعبة تتميز بنظام حركة سريع جداً (Parkour & Sliding)، يمكنك التزحلق والجري والتسلق على الجدران بسرعة لإرباك الأعداء!
+                    </div>
+                `
+            },
+            {
+                title: "2. نظام الشركاء (Strikers)",
+                icon: "🦸‍♂️",
+                content: `
+                    <p>في Blood Strike لا تلعب بشخصية عادية، بل تختار "سترايكر" (Striker) يتميز بقدرات تكتيكية خاصة.</p>
+                    
+                    <div class="step-box">
+                        <strong>أبرز الشخصيات المناسبة للمبتدئين:</strong>
+                        <ul>
+                            <li><b>Ethan:</b> يطلق درعاً حماية أمامياً ينقذك في الاشتباكات المباشرة.</li>
+                            <li><b>Jet:</b> متخصص في السرعة والهجوم السريع والهجوم المباغت.</li>
+                            <li><b>Val:</b> تستطيع كشف أماكن الأعداء خلف الجدران (Radar / Scan).</li>
+                            <li><b>KAGI:</b> شخصية تسلل ومهارات إخفاء الصوت والحركة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>🎯 نصيحة:</strong> جرب القدرة الخاصة لشخصيتك (Ultimate Ability) بانتظام أثناء المعارك ولا تحتفظ بها طويلاً، فهي تعيد الشحن بسرعة!
+                    </div>
+                `
+            },
+            {
+                title: "3. الأسلحة وتخصيص العتاد (Loadout)",
+                icon: "🔫",
+                content: `
+                    <p>تفوقك في المواجهات يعتمد بشكل كبير على اختيار الأسلحة المناسبة لمسافة القتال.</p>
+
+                    <div class="step-box">
+                        <strong>أنواع الأسلحة الأساسية:</strong>
+                        <ul>
+                            <li><b>الرشاشات الهجومية (AR - Assault Rifles):</b> ممتازة للمسافات المتوسطة والبعيدة (مثل AK47, M4A1).</li>
+                            <li><b>الرشاشات الخفيفة (SMG):</b> الأفضل للمواجهات القريبة جداً وسرعة إطلاق النار (مثل MP5, Vector).</li>
+                            <li><b>القناصات (Sniper Rifles):</b> لإسقاط الأعداء بطلقة واحدة من مسافات بعيدة.</li>
                         </ul>
                     </div>
 
                     <div class="step-box">
-                        <strong>الخطوات الأولى:</strong>
+                        <strong>طلب الـ Loadout Drop:</strong>
+                        <p>خلال الجولة، يمكنك جمع المال لشراء أو طلب إسقاط "Loadout Drop" من المتاجر المنتشرة في الخريطة للحصول على أسلحتك المجهزة مسبقاً وتعديلاتك المفضلة!</p>
+                    </div>
+                `
+            },
+            {
+                title: "4. نظام الذهب والإنعاش (Respawn)",
+                icon: "💰",
+                content: `
+                    <p>تتميز Blood Strike بنظام اقتصاد وإنعاش مريح مقارنة بألعاب الباتل رويال الأخرى.</p>
+
+                    <div class="step-box">
+                        <strong>كيف تضمن العودة بعد الموت؟</strong>
                         <ol>
-                            <li>اذهب لأقرب شجرة واضغط باستمرار على كليك أيسر لتكسير الخشب (Wood Logs).</li>
-                            <li>افتح الحقيبة (E) وضّع الخشب في مربع الصناعة لتصنيع "أخشاب محولة" (Planks).</li>
-                            <li>اصنع <b>طاولة العمل (Crafting Table)</b> بوضع 4 أخشاب في المربعات الأربعة.</li>
+                            <li><b>إعادة الانتشار المباشر (Unlimited Respawn):</b> في المراحل الأولى من المباراة، إذا تم القضاء عليك وكان زميلك في الفريق حياً، ستعود للظهور تلقائياً بعد ثوانٍ!</li>
+                            <li><b>جمع المال (Cash):</b> اجمع الذهب/المال الملقى على الأرض أو من الصناديق.</li>
+                            <li><b>أجهزة الشراء (Shops):</b> يمكنك استخدام المال لشراء زملائك إذا ماتوا في الأطوار المتقدمة، أو شراء دروع وأسلحة مخصصة.</li>
                         </ol>
                     </div>
                 `
             },
             {
-                title: "2. أدوات الموارد والمأوى الأول",
-                icon: "⛏️",
+                title: "5. مهارات الحركة (Movement & Aim)",
+                icon: "⚡",
                 content: `
-                    <p>الآن تمتلك طاولة عمل، حان الوقت لصنع أدواتك الأولى وبناء ملجأ سريع.</p>
-                    
+                    <p>لكي تصبح لاعباً محترفاً في بلود سترايك، يجب أن تتقن الحركة أثناء التصويب.</p>
+
                     <div class="step-box">
-                        <strong>صناعة الأدوات الخشبية:</strong>
+                        <strong>حركات أساسية للتفوق:</strong>
                         <ul>
-                            <li>اصنع عصيّاً (Sticks) من الأخشاب.</li>
-                            <li>ضع طاولة العمل على الأرض وافتحها (كليك أيمن).</li>
-                            <li>اصنع <b>معول خشبي (Wooden Pickaxe)</b> لتتمكن من حفر الحجارة.</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-box">
-                        <strong>التحديث للأدوات الحجرية:</strong>
-                        <p>احفر تحت الأرض واستخرج 3 كتل من الحجر (Cobblestone)، ثم طور معولك لمعول حجري فوراً (لأن المعول الخشبي بطيء جداً).</p>
-                    </div>
-
-                    <div class="tip-box">
-                        <strong>⚠️ حماية الليل الأول:</strong>
-                        عندما تغرب الشمس، تظهر الوحوش (الزومبي، الهياكل العظمية، والكريبر). احفر حجرة صغيرة داخل جبل أو ابنِ بيتاً صغيراً بكتل الطين/الخشب وأغلق الباب لتنام أو تنتظر الصباح.
-                    </div>
-                `
-            },
-            {
-                title: "3. الطعام والسلالك الأساسية",
-                icon: "🍖",
-                content: `
-                    <p>شريط الجوع (شكل اللحم بجانب قلوب الصحة) ينقص باستمرار. إذا فرغ، لن تستطيع الجري وستبدأ بفقدان صحتك.</p>
-                    
-                    <div class="step-box">
-                        <strong>كيف تحصل على الطعام؟</strong>
-                        <ul>
-                            <li><b>الأبقار والخنازير والدجاج:</b> اضربها للحصول على اللحم النيئ.</li>
-                            <li><b>الزراعة:</b> كسر الحشائش للحصول على بذور البذور (Seeds)، ثم استخدم "المجرفة/Hoe" لتجهيز التربة قرب الماء وزراعتها لتنبت قمحاً (Wheat).</li>
-                        </ul>
-                    </div>
-
-                    <div class="step-box">
-                        <strong>صناعة الفرن (Furnace):</strong>
-                        <p>اصنع فرناً باستعمال 8 حبات حجارة على طاولة العمل. استخدم الفحم أو الخشب كوقود لطهي اللحم (اللحم المطهو يعطي طاقة مضاعفة!).</p>
-                    </div>
-                `
-            },
-            {
-                title: "4. التعدين والموارد المتقدمة",
-                icon: "💎",
-                content: `
-                    <p>لكي تصبح أقوى، عليك الانطلاق في رحلات تعدين تحت الأرض (Mining).</p>
-
-                    <div class="step-box">
-                        <strong>تدرج الموارد للمعاول:</strong>
-                        <ul>
-                            <li><b>الفحم (Coal):</b> يصنع الشموع للإضاءة وطهي الطعام.</li>
-                            <li><b>الحديد (Iron):</b> تحتاج معول حجري لتكسيره. قم بصهر خام الحديد في الفرن لتصنع أدوات ودروع حديدية.</li>
-                            <li><b>الألماس (Diamond):</b> أندر وأقوى مادة أساسية! تجدها في الأعماق السفلية (المستويات العميقة قرب الـ Bedrock). تحتاج **معول حديدي** حصراً لتكسيره.</li>
+                            <li><b>Slide Cancel:</b> اضغط زر التزحلق وأنت تجري ثم اضغط القفز فوراً للتنقل بسرعة وتفادي الرصاص.</li>
+                            <li><b>Jump Shot:</b> القفز أثناء المواجهة القريبة يجعل العدو يفقد التركيز على رأسك (Headshot).</li>
+                            <li><b>استخدام المظلة والمحطّات:</b> استخدم منصات الإطلاق (Zip-lines) في الخريطة للانتقال لأماكن مرتفعة والتفوق بالتضاريس.</li>
                         </ul>
                     </div>
 
                     <div class="tip-box">
-                        <strong>💡 قاعدة التعدين الذهبية:</strong>
-                        لا تحفر أبداً تحت قدميك مباشرة! قد تسقط في حمم بركانية (Lava).
+                        <strong>⚙️ إعدادات الحساسية (Sensitivity):</strong>
+                        ادخل للإعدادات وقم بضبط الحساسية لتناسب سرعة يدك، وفعّل خيار **Auto-Pickup** لتلتقط الذخيرة والدروع تلقائياً.
                     </div>
                 `
             },
             {
-                title: "5. عالم السفل (The Nether)",
-                icon: "🔥",
+                title: "6. نصائح لتحقيق الفوز (Victory Tips)",
+                icon: "🏆",
                 content: `
-                    <p>بعد تجهيز نفسك بدروع وأدوات ماسية أو حديدية، حان الوقت للانتقال للبعد الثاني: عالم السفل (Nether).</p>
+                    <p>خطة خطوة بخطوة للوصول للترتيب الأول في كل جولة:</p>
 
                     <div class="step-box">
-                        <strong>كيف تبني بوابة النذر (Nether Portal)؟</strong>
+                        <strong>استراتيجية الفوز:</strong>
                         <ol>
-                            <li>اصنع حجر الأوبسيديان (Obsidian) عن طريق صب الماء فوق الحمم البركانية الثابتة.</li>
-                            <li>استخرج 10 كتل أوبسيديان على الأقل باستخدام **معول ماسي** (لا يمكن تكسيره بأي معول آخر).</li>
-                            <li>ابنِ إطاراً مستطيلاً بارتفاع 5 كتل وعرض 4 كتل.</li>
-                            <li>اشعل منتصف الإطار باستخدام الولاعة (Flint and Steel).</li>
+                            <li><b>الهبوط الآمن:</b> لا تهبط في وسط الخريطة المكتظ إذا كنت مبتدئاً، اختر أطراف الخريطة للتجمع والتسلح بروقان.</li>
+                            <li><b>تحديث الدروع:</b> حافظ دائماً على دروعك (Armor Plates) ممتلئة ولا تشتبك ودروعك مكسورة.</li>
+                            <li><b>التواصل مع الفريق:</b> استخدم نظام الإشارات (Ping) لتحديد أماكن الأعداء والأسلحة لزملائك.</li>
+                            <li><b>استغلال الغاز:</b> تحرك مع حافة الدائرة حتى لا يباغتك أحد من الخلف.</li>
                         </ol>
                     </div>
 
-                    <div class="step-box">
-                        <strong>ماذا تفعل هناك؟</strong>
-                        <ul>
-                            <li>ابحث عن حصن النذر (Nether Fortress).</li>
-                            <li>اقتل كائنات الـ **Blaze** للحصول على أعواد الـ (Blaze Rods).</li>
-                            <li>اقتل كائنات الـ **Enderman** في العالم العادي أو النذر للحصول على لؤلؤ الـ (Ender Pearls).</li>
-                        </ul>
-                    </div>
-                `
-            },
-            {
-                title: "6. النهاية وهزم التنين (The End)",
-                icon: "🐉",
-                content: `
-                    <p>هذه هي المرحلة الختامية للعبة ماينكرافت!</p>
-
-                    <div class="step-box">
-                        <strong>خطوات الوصول للمرحلة الأخيرة:</strong>
-                        <ol>
-                            <li>ادمج مسحوق الـ Blaze Rods مع الـ Ender Pearls لصناعة **عين النهاية (Eye of Ender)**.</li>
-                            <li>ارمي العين في الهواء؛ ستطير باتجاه القلعة المخبأة تحت الأرض (Stronghold). اتبع اتجاهها.</li>
-                            <li>عندما تتجه العين للأسفل تحت الأرض، احفر هناك لتجد غرفة "بوابة النهاية".</li>
-                            <li>ضع أعيُن الـ Ender في المربعات الفارغة لإطارات البوابة لفتح الثقب الأسود.</li>
-                        </ol>
-                    </div>
-
-                    <div class="step-box">
-                        <strong>معركة التنين (Ender Dragon):</strong>
-                        <ul>
-                            <li>جهز نفسك بـ: أسلحة مدمجة، دروع ماسية، مطورات، قوس وأسهم، وأطعمة ممتازة.</li>
-                            <li>عند الدخول، دمر **بلورات النور (Ender Crystals)** الموجودة فوق الأعمدة السفلية أولاً لأنها تعالج التنين.</li>
-                            <li>أطلق الأسهم على التنين وهاجمه عندما ينزل للمنتصف حتى تنهي شريط صحته!</li>
-                        </ul>
-                    </div>
-
                     <div class="tip-box">
-                        <strong>🎉 مبروك!</strong> بعد هزم التنين ستظهر شاشة النهاية وتكون قد أنهيت طور القصة الأساسي للعبة، ويمكنك العودة لعالمك لإكمال البناء والاستكشاف إلى ما لا نهاية.
+                        <strong>🔥 التكرار والممارسة:</strong> جرب طور "Hot Zone" أو القتال الجماعي السريع في اللعبة لتعتاد على التصويب والمواجهات المباشرة بسرعة.
                     </div>
                 `
             }
@@ -356,13 +329,11 @@
 
         let currentLessonIndex = 0;
 
-        // تهيئة التطبيق
         function initApp() {
             renderSidebar();
             loadLesson(currentLessonIndex);
         }
 
-        // عرض عناصر القائمة الجانبية
         function renderSidebar() {
             const navList = document.getElementById('navList');
             navList.innerHTML = '';
@@ -376,7 +347,6 @@
             });
         }
 
-        // تحميل درس محدد
         function loadLesson(index) {
             currentLessonIndex = index;
             const lesson = guideData[index];
@@ -384,15 +354,12 @@
             document.getElementById('lessonTitle').innerHTML = `${lesson.icon} ${lesson.title}`;
             document.getElementById('lessonBody').innerHTML = lesson.content;
 
-            // تحديث أزرار التنقل
             document.getElementById('prevBtn').disabled = index === 0;
             document.getElementById('nextBtn').disabled = index === guideData.length - 1;
 
-            // تحديث الشريط الجانبي
             renderSidebar();
         }
 
-        // التنقل للدرس السابق/التالي
         function changeLesson(direction) {
             const newIndex = currentLessonIndex + direction;
             if (newIndex >= 0 && newIndex < guideData.length) {
@@ -400,7 +367,6 @@
             }
         }
 
-        // تشغيل التطبيق عند التحميل
         initApp();
     </script>
 </body>
