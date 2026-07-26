@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل ماينكرافت الشامل للمبتدئين</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-green: #55ff55;
+            --accent-gold: #ffaa00;
+            --text-color: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 320px;
+            background-color: var(--card-bg);
+            border-left: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+        }
+
+        .nav-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #2a2a2a;
+            border-right: 4px solid var(--accent-green);
+        }
+
+        .nav-item span {
+            font-size: 1.2rem;
+        }
+
+        /* منطقة المحتوى */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-title {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-body {
+            line-height: 1.8;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+
+        .step-box {
+            background: #252525;
+            border-right: 4px solid var(--accent-green);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background: #2a2415;
+            border-right: 4px solid var(--accent-gold);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #ffe0b2;
+        }
+
+        ul {
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* أزرار التنقل */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>⛏️ دليل ماينكرافت للمبتدئين</h1>
+        </div>
+        <ul class="nav-list" id="navList">
+            <!-- سيتم توليد العناصر عبر JS -->
+        </ul>
+    </aside>
+
+    <!-- منطقة عرض الدرس -->
+    <main class="main-content">
+        <div class="content-card">
+            <h2 class="content-title" id="lessonTitle">اختر درساً للبدء</h2>
+            <div class="content-body" id="lessonBody">
+                <!-- سيتم تحميل المحتوى هنا -->
+            </div>
+            <div class="controls">
+                <button class="btn" id="prevBtn" onclick="changeLesson(-1)">السابق</button>
+                <button class="btn" id="nextBtn" onclick="changeLesson(1)">التالي</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // قاعدة بيانات الدروس والأساسيات من البداية للنهاية
+        const guideData = [
+            {
+                title: "1. التحكم واليوم الأول",
+                icon: "🌲",
+                content: `
+                    <p>أهلاً بك في ماينكرافت! هدفك الأول هو البقاء على قيد الحياة قبل أن يحل الليل.</p>
+                    
+                    <div class="step-box">
+                        <strong>أزرار التحكم الأساسية (PC):</strong>
+                        <ul>
+                            <li><b>WASD:</b> الحركة (للأمام، الخلف، اليسار، اليمين).</li>
+                            <li><b>المسطرة (Space):</b> القفز.</li>
+                            <li><b>الماوس (الزر الأيسر):</b> الضرب وتكسير الكتل.</li>
+                            <li><b>الماوس (الزر الأيمن):</b> استخدام الأشياء وتجميع/وضع الكتل.</li>
+                            <li><b>E:</b> فتح الحقيبة (Inventory).</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>الخطوات الأولى:</strong>
+                        <ol>
+                            <li>اذهب لأقرب شجرة واضغط باستمرار على كليك أيسر لتكسير الخشب (Wood Logs).</li>
+                            <li>افتح الحقيبة (E) وضّع الخشب في مربع الصناعة لتصنيع "أخشاب محولة" (Planks).</li>
+                            <li>اصنع <b>طاولة العمل (Crafting Table)</b> بوضع 4 أخشاب في المربعات الأربعة.</li>
+                        </ol>
+                    </div>
+                `
+            },
+            {
+                title: "2. أدوات الموارد والمأوى الأول",
+                icon: "⛏️",
+                content: `
+                    <p>الآن تمتلك طاولة عمل، حان الوقت لصنع أدواتك الأولى وبناء ملجأ سريع.</p>
+                    
+                    <div class="step-box">
+                        <strong>صناعة الأدوات الخشبية:</strong>
+                        <ul>
+                            <li>اصنع عصيّاً (Sticks) من الأخشاب.</li>
+                            <li>ضع طاولة العمل على الأرض وافتحها (كليك أيمن).</li>
+                            <li>اصنع <b>معول خشبي (Wooden Pickaxe)</b> لتتمكن من حفر الحجارة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>التحديث للأدوات الحجرية:</strong>
+                        <p>احفر تحت الأرض واستخرج 3 كتل من الحجر (Cobblestone)، ثم طور معولك لمعول حجري فوراً (لأن المعول الخشبي بطيء جداً).</p>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>⚠️ حماية الليل الأول:</strong>
+                        عندما تغرب الشمس، تظهر الوحوش (الزومبي، الهياكل العظمية، والكريبر). احفر حجرة صغيرة داخل جبل أو ابنِ بيتاً صغيراً بكتل الطين/الخشب وأغلق الباب لتنام أو تنتظر الصباح.
+                    </div>
+                `
+            },
+            {
+                title: "3. الطعام والسلالك الأساسية",
+                icon: "🍖",
+                content: `
+                    <p>شريط الجوع (شكل اللحم بجانب قلوب الصحة) ينقص باستمرار. إذا فرغ، لن تستطيع الجري وستبدأ بفقدان صحتك.</p>
+                    
+                    <div class="step-box">
+                        <strong>كيف تحصل على الطعام؟</strong>
+                        <ul>
+                            <li><b>الأبقار والخنازير والدجاج:</b> اضربها للحصول على اللحم النيئ.</li>
+                            <li><b>الزراعة:</b> كسر الحشائش للحصول على بذور البذور (Seeds)، ثم استخدم "المجرفة/Hoe" لتجهيز التربة قرب الماء وزراعتها لتنبت قمحاً (Wheat).</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>صناعة الفرن (Furnace):</strong>
+                        <p>اصنع فرناً باستعمال 8 حبات حجارة على طاولة العمل. استخدم الفحم أو الخشب كوقود لطهي اللحم (اللحم المطهو يعطي طاقة مضاعفة!).</p>
+                    </div>
+                `
+            },
+            {
+                title: "4. التعدين والموارد المتقدمة",
+                icon: "💎",
+                content: `
+                    <p>لكي تصبح أقوى، عليك الانطلاق في رحلات تعدين تحت الأرض (Mining).</p>
+
+                    <div class="step-box">
+                        <strong>تدرج الموارد للمعاول:</strong>
+                        <ul>
+                            <li><b>الفحم (Coal):</b> يصنع الشموع للإضاءة وطهي الطعام.</li>
+                            <li><b>الحديد (Iron):</b> تحتاج معول حجري لتكسيره. قم بصهر خام الحديد في الفرن لتصنع أدوات ودروع حديدية.</li>
+                            <li><b>الألماس (Diamond):</b> أندر وأقوى مادة أساسية! تجدها في الأعماق السفلية (المستويات العميقة قرب الـ Bedrock). تحتاج **معول حديدي** حصراً لتكسيره.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>💡 قاعدة التعدين الذهبية:</strong>
+                        لا تحفر أبداً تحت قدميك مباشرة! قد تسقط في حمم بركانية (Lava).
+                    </div>
+                `
+            },
+            {
+                title: "5. عالم السفل (The Nether)",
+                icon: "🔥",
+                content: `
+                    <p>بعد تجهيز نفسك بدروع وأدوات ماسية أو حديدية، حان الوقت للانتقال للبعد الثاني: عالم السفل (Nether).</p>
+
+                    <div class="step-box">
+                        <strong>كيف تبني بوابة النذر (Nether Portal)؟</strong>
+                        <ol>
+                            <li>اصنع حجر الأوبسيديان (Obsidian) عن طريق صب الماء فوق الحمم البركانية الثابتة.</li>
+                            <li>استخرج 10 كتل أوبسيديان على الأقل باستخدام **معول ماسي** (لا يمكن تكسيره بأي معول آخر).</li>
+                            <li>ابنِ إطاراً مستطيلاً بارتفاع 5 كتل وعرض 4 كتل.</li>
+                            <li>اشعل منتصف الإطار باستخدام الولاعة (Flint and Steel).</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>ماذا تفعل هناك؟</strong>
+                        <ul>
+                            <li>ابحث عن حصن النذر (Nether Fortress).</li>
+                            <li>اقتل كائنات الـ **Blaze** للحصول على أعواد الـ (Blaze Rods).</li>
+                            <li>اقتل كائنات الـ **Enderman** في العالم العادي أو النذر للحصول على لؤلؤ الـ (Ender Pearls).</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: "6. النهاية وهزم التنين (The End)",
+                icon: "🐉",
+                content: `
+                    <p>هذه هي المرحلة الختامية للعبة ماينكرافت!</p>
+
+                    <div class="step-box">
+                        <strong>خطوات الوصول للمرحلة الأخيرة:</strong>
+                        <ol>
+                            <li>ادمج مسحوق الـ Blaze Rods مع الـ Ender Pearls لصناعة **عين النهاية (Eye of Ender)**.</li>
+                            <li>ارمي العين في الهواء؛ ستطير باتجاه القلعة المخبأة تحت الأرض (Stronghold). اتبع اتجاهها.</li>
+                            <li>عندما تتجه العين للأسفل تحت الأرض، احفر هناك لتجد غرفة "بوابة النهاية".</li>
+                            <li>ضع أعيُن الـ Ender في المربعات الفارغة لإطارات البوابة لفتح الثقب الأسود.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-box">
+                        <strong>معركة التنين (Ender Dragon):</strong>
+                        <ul>
+                            <li>جهز نفسك بـ: أسلحة مدمجة، دروع ماسية، مطورات، قوس وأسهم، وأطعمة ممتازة.</li>
+                            <li>عند الدخول، دمر **بلورات النور (Ender Crystals)** الموجودة فوق الأعمدة السفلية أولاً لأنها تعالج التنين.</li>
+                            <li>أطلق الأسهم على التنين وهاجمه عندما ينزل للمنتصف حتى تنهي شريط صحته!</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>🎉 مبروك!</strong> بعد هزم التنين ستظهر شاشة النهاية وتكون قد أنهيت طور القصة الأساسي للعبة، ويمكنك العودة لعالمك لإكمال البناء والاستكشاف إلى ما لا نهاية.
+                    </div>
+                `
+            }
+        ];
+
+        let currentLessonIndex = 0;
+
+        // تهيئة التطبيق
+        function initApp() {
+            renderSidebar();
+            loadLesson(currentLessonIndex);
+        }
+
+        // عرض عناصر القائمة الجانبية
+        function renderSidebar() {
+            const navList = document.getElementById('navList');
+            navList.innerHTML = '';
+
+            guideData.forEach((lesson, index) => {
+                const li = document.createElement('li');
+                li.className = `nav-item ${index === currentLessonIndex ? 'active' : ''}`;
+                li.onclick = () => loadLesson(index);
+                li.innerHTML = `<span>${lesson.icon}</span> <div>${lesson.title}</div>`;
+                navList.appendChild(li);
+            });
+        }
+
+        // تحميل درس محدد
+        function loadLesson(index) {
+            currentLessonIndex = index;
+            const lesson = guideData[index];
+
+            document.getElementById('lessonTitle').innerHTML = `${lesson.icon} ${lesson.title}`;
+            document.getElementById('lessonBody').innerHTML = lesson.content;
+
+            // تحديث أزرار التنقل
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === guideData.length - 1;
+
+            // تحديث الشريط الجانبي
+            renderSidebar();
+        }
+
+        // التنقل للدرس السابق/التالي
+        function changeLesson(direction) {
+            const newIndex = currentLessonIndex + direction;
+            if (newIndex >= 0 && newIndex < guideData.length) {
+                loadLesson(newIndex);
+            }
+        }
+
+        // تشغيل التطبيق عند التحميل
+        initApp();
+    </script>
+</body>
+</html>
